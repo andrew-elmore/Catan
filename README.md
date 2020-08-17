@@ -22,11 +22,11 @@ In addition to the entry file there will be [X] scripts:
 
 ## Timeline
 
-###Day 1: Setup
+### Day 1: Setup
 Get webpack running, create entry file, create the board.js file including the grid object and render the canvas. 
 
-###Day 2: Road, Settlement and City Construction
+### Day 2: Road, Settlement and City Construction
 Allow the player to create roads, settlements and cities if they have enough resources. Allow players to trade three of one resource for one of another resouce.
 
-###Day 3: Interface
+### Day 3: Interface
 Adds event listners to HTML elements above the canvas to allow players to interact by clicking the elements, add on screen counters for resources and victory points, style with CSS.
