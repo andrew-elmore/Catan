@@ -14,7 +14,7 @@ In addition to the entry file there will be [X] scripts:
 -A player.js file that will track each player's resources (including victory points), pass information on the player's actions to the game.js file, and handle trading logic.
 -A game.js file that will check victory conditions, make dice rolls, and switch between players.
 
-##Wireframe
+###Wireframe
 ![wireframe](/README_images/wireframe.png)
 
 ##Timeline
