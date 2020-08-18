@@ -2,10 +2,6 @@ const grid = require("./grid");
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    
-
-
-
     const canvas = document.querySelector('canvas')
     const ctx = canvas.getContext('2d')
 
@@ -33,9 +29,35 @@ document.addEventListener("DOMContentLoaded", function () {
     const roads = Object.values(grid.roads)
 
     settlements.forEach(settlement => {
-        ele = document.getElementById(settlement.name)
+        let ele = document.createElement("div")
+        ele.id = settlement.name
+        ele.style.top = `${settlement.pos.y - 5}px`
+        ele.style.left = `${settlement.pos.x - 5}px`
+        // ele.style.backgroundColor = `red`
+
+        let grid = document.getElementsByClassName("grid")
+        grid[0].appendChild(ele)
         ele.addEventListener('click', () => { createSettlement(settlement)})
     });
+    roads.forEach(road => {
+
+        let adjY = Math.max(road.settlements[0].pos.y, road.settlements[1].pos.y) - Math.min(road.settlements[0].pos.y, road.settlements[1].pos.y)
+        let adjX = Math.max(road.settlements[0].pos.x, road.settlements[1].pos.x) - Math.min(road.settlements[0].pos.x, road.settlements[1].pos.x)
+
+        let ele = document.createElement("span")
+        ele.id = road.name
+
+     
+        ele.style.top = `${Math.min(road.settlements[0].pos.y, road.settlements[1].pos.y) + (adjY / 2) - 10}px`
+        ele.style.left = `${Math.min(road.settlements[0].pos.x, road.settlements[1].pos.x) + (adjX / 2) - 10}px`
+        // ele.style.backgroundColor = `red`
+
+        let grid = document.getElementsByClassName("grid")
+        grid[0].appendChild(ele)
+        ele.addEventListener('click', () => { createRoad(road) })
+    });
+
+
     roads.forEach(road => {
         ele = document.getElementById(road.name)
         ele.addEventListener('click', () => { createRoad(road)})
