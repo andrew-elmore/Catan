@@ -19,3 +19,11 @@
     width: 20px;
 }
 
+.grid p {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    margin: 0;
+    text-align: center;
+}
+

@@ -1,3 +1,3 @@
-const board = require("./board");
+import Board from "./board";
 console.log("Webpack is working!")
 
