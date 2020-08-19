@@ -1,3 +1,3 @@
-import Board from "./board";
+import Game from "./game";
 console.log("Webpack is working!")
 
