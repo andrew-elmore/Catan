@@ -14,7 +14,6 @@ export function renderBoard(){
 
         let grid = document.getElementsByClassName("grid")
         grid[0].appendChild(ele)
-        ele.addEventListener('click', () => { this.createSettlement(settlement, currentPlayer) })
     });
 
     roads.forEach(road => {
@@ -30,7 +29,7 @@ export function renderBoard(){
 
         let grid = document.getElementsByClassName("grid")
         grid[0].appendChild(ele)
-        ele.addEventListener('click', () => { this.createRoad(road, currentPlayer) })
+        // ele.addEventListener('click', () => { createRoad(road, currentPlayer) })
     });
 
     tiles.forEach(tile => {
@@ -117,7 +116,6 @@ export function renderSettlement(settlement, player) {
     ctx.fillStyle = player.color
     ctx.fill()
     ctx.stroke()
-    console.log(grid)
 }
 
 
@@ -132,5 +130,4 @@ export function renderRoad(road, player) {
     ctx.strokeStyle = player.color
     ctx.lineWidth = 3
     ctx.stroke()
-    console.log(grid)
 }
