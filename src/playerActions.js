@@ -21,6 +21,7 @@ export function constructCity(player){
         return false
     }
 }
+
 export function constructRoad(player, road){
     if (player.startRoads > 0 && road.settlements.some(settlement => settlement.owner === player)){
         player.startRoads -= 1
@@ -37,6 +38,7 @@ export function constructRoad(player, road){
         }
     }
 }
+
 export function constructSettlement(player, settlement){
     if (settlement.roads.some(road => road.owner === player)){
         if (player.resources.brick >= 1 && player.resources.grain >= 1 && player.resources.wool >= 1 && player.resources.lumber >= 1) {
@@ -61,8 +63,6 @@ export function constructSettlement(player, settlement){
     }
 }
 
-
-
 function hasAdjRoads(road, player){
     let adjRoads = Object.values(road.settlements[0].roads.concat(road.settlements[1].roads))
     if (adjRoads.some(road => road.owner === player)) {
@@ -74,65 +74,59 @@ function hasAdjRoads(road, player){
 }
 
 export function updateView(player){
-    updateResources(player)
-    renderTradePannel(player)
-}
-
-function updateResources(player) {
-    Object.entries(player.resources).forEach(([resourceName, amount] )=>{
-        let ele = document.getElementById(resourceName)
-        ele.innerHTML = `${resourceName}: ${amount}`
-    })
-    document.getElementById("player-name").innerHTML = player.color
-    document.getElementById("victory-points").innerHTML = player.victoryPoints
-    renderTradePannel(player)
+    updateTradePannel(player)
+    
+    document.getElementById("player-name").innerHTML = player.color.charAt(0).toUpperCase() + player.color.slice(1)
+    document.getElementById("victory-points").innerHTML = `Victory Points: ${player.victoryPoints}`
 }
 
 export function renderPlayerMessages(message){
-    // debugger
     let ele = document.getElementById("user-pannel")
     ele.innerHTML = message
     setInterval(() => ele.innerHTML = "",5000)
 }
 
-function renderTradePannel(player) {
+export function renderTradePannel(player) { 
     let tradePannel = document.getElementById("trade-pannel")
-    while (tradePannel.firstChild) {
-        tradePannel.removeChild(tradePannel.firstChild);
-    }
-    Object.entries(player.resources).forEach(([resourceName, amount]) => {
-        if (amount >= 3){
-            let tradeAway = document.createElement('div')
-            tradeAway.id = `trade-away-${resourceName}`
-            
-            tradePannel.appendChild(tradeAway)
-            tradeAway.innerHTML = `Trade 3 ${resourceName}`
-            tradeAway.addEventListener('click', () => { startTrade(player, resourceName) })
-        }
-    })
-}
+    Object.entries(player.resources).forEach(([fromResourceName, fromAmount]) => {
+        let tradeAway = document.createElement('div')
+        tradeAway.id = `trade-away-${fromResourceName}`
+        tradeAway.className = `resource-trade-container`
+        tradePannel.appendChild(tradeAway)
+        
+        let awayDispaly = document.createElement('div')
+        awayDispaly.id = `trade-display-${fromResourceName}`
+        // awayDispaly.class = `trade-display-title`
+        tradeAway.appendChild(awayDispaly)
+        awayDispaly.innerHTML = `${fromResourceName}: ${fromAmount}`
 
-function startTrade(player, awayResourceName){
-    // debugger
-    // let tradeAway = document.getElementById(`trade-away-${awayResourceName}`)
-    Object.entries(player.resources).forEach(([toResourceName, amount]) => {
-        let tradeTo = document.createElement('div')
-        tradeTo.id = `trade-to-${toResourceName}`
-        let tradeAway = document.getElementById(`trade-away-${awayResourceName}`)
+
+        Object.entries(player.resources).forEach(([toResourceName, toAmount]) => {
+        let tradeTo = document.createElement('button')
+        tradeTo.id = `${fromResourceName}-to-${toResourceName}`
+        tradeTo.className = `resource-trade-button`
         tradeAway.appendChild(tradeTo)
-        tradeTo.innerHTML = `For 1 ${toResourceName}`
-        tradeTo.addEventListener('click', () => { finishTrade(player, awayResourceName, toResourceName) })
+        tradeTo.innerHTML = `Trade 3:1 for ${toResourceName}`
+        tradeTo.addEventListener('click', () => { finishTrade(player, fromResourceName, toResourceName) })
+        })
     })
 }
 
-function finishTrade(player, awayResourceName, toResourceName){
-    // debugger
-    let tradeAway = document.getElementById(`trade-away-${awayResourceName}`)
-    while (tradeAway.firstChild) {
-        tradeAway.removeChild(tradeAway.firstChild);
-    }
-    tradeAway.remove()
-    player.resources[awayResourceName] -= 3
-    player.resources[toResourceName] += 1
-    updateResources(player)
+function updateTradePannel(player){
+    Object.entries(player.resources).forEach(([fromResourceName, fromAmount]) => {
+        let awayDispaly = document.getElementById(`trade-display-${fromResourceName}`)
+        awayDispaly.innerHTML = `${fromResourceName}: ${fromAmount}`
+    })
 }
+
+function finishTrade(player, fromResourceName, toResourceName) {
+    if (player.resources[fromResourceName] >=3 ){
+        player.resources[fromResourceName] -= 3
+        player.resources[toResourceName] += 1
+    } else {
+        renderPlayerMessages(`Not enough ${fromResourceName}`)
+    }
+    updateTradePannel(player)
+} 
+
+

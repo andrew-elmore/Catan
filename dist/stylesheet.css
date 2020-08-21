@@ -1,10 +1,18 @@
-.grid button{
-    width: 10px;
-    height: 10px;
+body {
+    margin: 0;
+    background-color: tan;
+}
+
+.grid-wrapper{
+    align-content: center;
+    padding: 30px;
 }
 
 .grid {
     position: relative;
+    height: 410px;
+    width: 510px;
+    margin: auto;
 }
 
 .grid div {
@@ -27,3 +35,68 @@
     text-align: center;
 }
 
+
+
+#top-bar{
+    padding: 30px;
+    display: flex;
+}
+
+#player-name{
+    padding-bottom: 10px;
+    font-size: 30px;
+    font-style: italic;
+    margin-right: auto;
+}
+
+#victory-points{
+    padding-bottom: 10px;
+    font-size: 30px;
+    font-style: italic;
+    margin-left: auto;
+}
+
+#user-pannel{
+    margin-left: auto;
+    margin-right: auto;
+    color: red;
+    font-style: italic;
+    height: 18px;
+    text-align: center;
+}
+
+
+
+
+
+#trade-pannel {
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    background-color: silver;
+    border-radius: 5px;
+
+}
+.resource-trade-container {
+    text-align: center;
+    width: 20%;
+    padding: 5px;
+}
+
+.resource-trade-button {
+    width: 100%;
+    background-color: #b0936b;
+    margin: 2px;
+    padding: 2px;
+}
+
+
+.roll {
+    align-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#roll{
+    background-color: #b0936b;
+    width: 100%;
+}

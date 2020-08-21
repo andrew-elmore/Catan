@@ -1,7 +1,7 @@
 const grid = require("./grid");
 import { renderRoad, renderSettlement, renderCity, renderBoard } from "./board"
 const players = require("./playersObject")
-import { addResources, constructCity, constructSettlement, constructRoad, updateView, renderPlayerMessages } from "./playerActions"
+import { addResources, constructCity, constructSettlement, constructRoad, updateView, renderPlayerMessages, renderTradePannel} from "./playerActions"
 
 
 class Game {
@@ -9,6 +9,7 @@ class Game {
         renderBoard()
         let currentPlayer = players[0]
         this.currentPlayer = currentPlayer
+        renderTradePannel(currentPlayer)
         let button = document.getElementById('roll')
         button.addEventListener('click', () => this.endTurn())
 
@@ -22,7 +23,6 @@ class Game {
             ele.addEventListener('click', () => { this.createRoad(road, this.currentPlayer) })
         })
         updateView(this.currentPlayer)
-        renderPlayerMessages("Test")
     }
 
 
