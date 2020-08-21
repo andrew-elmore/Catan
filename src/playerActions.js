@@ -113,6 +113,7 @@ export function renderTradePannel(player) {
 }
 
 function updateTradePannel(player){
+    debugger
     Object.entries(player.resources).forEach(([fromResourceName, fromAmount]) => {
         let awayDispaly = document.getElementById(`trade-display-${fromResourceName}`)
         awayDispaly.innerHTML = `${fromResourceName}: ${fromAmount}`
