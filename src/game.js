@@ -8,6 +8,7 @@ class Game {
     constructor() {
         renderBoard()
         let currentPlayer = players[0]
+        players[0].currentPlayer = true
         this.currentPlayer = currentPlayer
         renderTradePannel(currentPlayer)
         let button = document.getElementById('roll')
@@ -55,6 +56,7 @@ class Game {
 
     roll() {
         let res = Math.round(Math.random() * 6) + Math.round(Math.random() * 6)
+        renderPlayerMessages(`You Rolled a ${res}`)
         Object.values(grid.tiles).forEach(tile =>{
             if (tile.number === res && res != 7){
                 Object.values(tile.settlements).forEach(settlement => {
@@ -83,11 +85,16 @@ class Game {
     }
 
     changePlayer(){
+        
         if (this.currentPlayer.id < 3){
             let id = this.currentPlayer.id
             this.currentPlayer = players[id + 1]
+            players[id].currentPlayer = false
+            players[id+1].currentPlayer = true
         } else {
             this.currentPlayer = players[0]
+            players[3].currentPlayer = false
+            players[0].currentPlayer = true
         }
         updateView(this.currentPlayer)
     }
@@ -110,6 +117,7 @@ class Game {
             return true
         } else {
             this.changePlayer()
+            roll()
             return false
         }
     }
