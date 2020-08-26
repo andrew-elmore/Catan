@@ -1,7 +1,16 @@
 const grid = require("./grid");
 import { renderRoad, renderSettlement, renderCity, renderBoard } from "./board"
 const players = require("./playersObject")
-import { addResources, constructCity, constructSettlement, constructRoad, updateView, renderPlayerMessages, renderTradePannel} from "./playerActions"
+import { 
+    addResources, 
+    constructCity, 
+    constructSettlement, 
+    constructRoad, 
+    updateView, 
+    renderPlayerMessages, 
+    renderTradePannel,
+    buyDevCard
+} from "./playerActions"
 
 
 class Game {
@@ -11,8 +20,11 @@ class Game {
         players[0].currentPlayer = true
         this.currentPlayer = currentPlayer
         renderTradePannel(currentPlayer)
-        let button = document.getElementById('roll')
-        button.addEventListener('click', () => this.endTurn())
+        let rollButton = document.getElementById('roll')
+        rollButton.addEventListener('click', () => this.endTurn())
+
+        let devCardButton = document.getElementById('dev-card')
+        devCardButton.addEventListener('click', () => buyDevCard())
 
         Object.values(grid.settlements).forEach(settlement => {
             let ele = document.getElementById(settlement.name)
@@ -25,7 +37,6 @@ class Game {
         })
         updateView(this.currentPlayer)
     }
-
 
 
     createCity(settlement, player) {

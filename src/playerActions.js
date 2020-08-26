@@ -19,6 +19,7 @@ export function addResources(type, player){
     }
 }
 
+
 export function constructCity(player){
     if (player.resources.ore >= 3 && player.resources.grain >= 2 ){
         player.victoryPoints += 1
@@ -90,6 +91,7 @@ export function updateView(){
     
     document.getElementById("player-name").innerHTML = player.color.charAt(0).toUpperCase() + player.color.slice(1)
     document.getElementById("victory-points").innerHTML = `Victory Points: ${player.victoryPoints}`
+    document.getElementById("knights").innerHTML = `Knights: ${player.knights}`
 }
 
 export function renderPlayerMessages(message){
@@ -149,4 +151,22 @@ function finishTrade(fromResourceName, toResourceName) {
     updateTradePannel()
 } 
 
-
+export function buyDevCard() {
+    let player = findPlayer()
+    if (player.resources.ore >= 1 && player.resources.grain >= 1 && player.resources.wool >= 1){
+        player.resources.ore -= 1
+        player.resources.grain -= 1 
+        player.resources.wool -= 1
+        let res = Math.random()
+        if (res > .5){
+            renderPlayerMessages(`You have drawn a victory card!`)
+            player.victoryPoints += 1
+        } else {
+            renderPlayerMessages(`You have drawn a knight!`)
+            player.knights += 1
+        }
+    } else {
+        renderPlayerMessages(`Not enough resources to buy a development card`)
+    }
+    updateView()
+}

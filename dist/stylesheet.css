@@ -5,7 +5,7 @@ body {
 
 .grid-wrapper{
     align-content: center;
-    padding: 30px;
+    padding: 10px;
 }
 
 .grid {
@@ -56,6 +56,13 @@ body {
     margin-left: auto;
 }
 
+#knights{
+    padding-bottom: 10px;
+    font-size: 30px;
+    font-style: italic;
+    margin-left: 122px;
+}
+
 #user-pannel{
     margin-left: auto;
     margin-right: auto;
@@ -97,6 +104,11 @@ body {
     padding-right: 10px;
 }
 #roll{
+    background-color: #b0936b;
+    width: 100%;
+}
+
+#dev-card{
     background-color: #b0936b;
     width: 100%;
 }
