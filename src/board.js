@@ -29,7 +29,6 @@ export function renderBoard(){
 
         let grid = document.getElementsByClassName("grid")
         grid[0].appendChild(ele)
-        // ele.addEventListener('click', () => { createRoad(road, currentPlayer) })
     });
 
     tiles.forEach(tile => {
