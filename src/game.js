@@ -36,6 +36,7 @@ class Game {
             ele.addEventListener('click', () => { this.createRoad(road, this.currentPlayer) })
         })
         updateView(this.currentPlayer)
+        renderPlayerMessages('Please place Two Roads and Two Settlements')
     }
 
 
@@ -110,6 +111,10 @@ class Game {
             players[0].currentPlayer = true
         }
         updateView(this.currentPlayer)
+        if (this.currentPlayer.firstTurn === true){
+            renderPlayerMessages('Please place Two Roads and Two Settlements')
+        }
+
     }
 
     firstTurn(){
@@ -127,6 +132,7 @@ class Game {
                 this.currentPlayer.firstTurn = false
                 this.changePlayer()
             }
+            
             return true
         } else {
             this.changePlayer()
