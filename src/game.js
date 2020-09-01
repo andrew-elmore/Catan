@@ -53,6 +53,8 @@ class Game {
                 }
             } else if (settlement.type === 'settlement') {
                 this.createCity(settlement, player)
+            } else {
+                renderPlayerMessages('You cannot build a settlement right next to another settlement.')
             }
         }
     }
