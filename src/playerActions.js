@@ -40,7 +40,7 @@ export function constructRoad(player, road){
     } else if (hasAdjRoads(road, player)) {
         if (player.resources.brick >= 1 && player.resources.lumber >= 1) {
             player.resources.brick -= 1
-            player.resources.lumber -= 2
+            player.resources.lumber -= 1
             updateView()
             return true
         } else {
@@ -128,7 +128,6 @@ export function renderTradePannel() {
 }
 
 function updateTradePannel(){
-    debugger
     let player = findPlayer()
     
 
