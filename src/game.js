@@ -149,9 +149,7 @@ class Game {
     }
 
     demoStart(){
-        debugger
         this.createSettlement(grid.settlements[19], this.currentPlayer);
-        debugger
         this.createRoad(grid.roads[26], this.currentPlayer);
         this.createSettlement(grid.settlements[36], this.currentPlayer);
         this.createRoad(grid.roads[47], this.currentPlayer);
