@@ -12,6 +12,10 @@ import {
     buyDevCard
 } from "./playerActions"
 
+import{
+    showInstructions
+} from "./tutorial.js"
+
 
 class Game {
     constructor() {
@@ -24,7 +28,7 @@ class Game {
         rollButton.addEventListener('click', () => this.endTurn())
 
         let instructions = document.getElementById('instructions-button')
-        instructions.addEventListener('click', () => this.showInstructions())
+        instructions.addEventListener('click', () => showInstructions())
 
         let devCardButton = document.getElementById('dev-card')
         devCardButton.addEventListener('click', () => buyDevCard())
@@ -42,7 +46,7 @@ class Game {
             ele.addEventListener('click', () => { this.createRoad(road, this.currentPlayer) })
         })
         
-
+        showInstructions()
         updateView(this.currentPlayer)
         renderPlayerMessages('Please place Two Roads and Two Settlements')
     }
@@ -171,9 +175,7 @@ class Game {
         this.endTurn()
     }
 
-    showInstructions(){
-        document.getElementById("instructions-anchor").style.display = "block";
-    }
+
 }
 
 
