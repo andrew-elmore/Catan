@@ -97,7 +97,7 @@ export function updateView(){
 export function renderPlayerMessages(message){
     let ele = document.getElementById("user-pannel")
     ele.innerHTML = message
-    setInterval(() => ele.innerHTML = "",5000)
+    setInterval(() => ele.innerHTML = "",10000)
 }
 
 export function renderTradePannel() { 

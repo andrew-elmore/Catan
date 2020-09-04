@@ -26,6 +26,9 @@ class Game {
         let devCardButton = document.getElementById('dev-card')
         devCardButton.addEventListener('click', () => buyDevCard())
 
+        let demoSetupButton = document.getElementById('demo-setup')
+        demoSetupButton.addEventListener('click', () => this.demoStart())
+
         Object.values(grid.settlements).forEach(settlement => {
             let ele = document.getElementById(settlement.name)
             ele.addEventListener('click', () => { this.createSettlement(settlement, this.currentPlayer) })
@@ -35,6 +38,8 @@ class Game {
             let ele = document.getElementById(road.name)
             ele.addEventListener('click', () => { this.createRoad(road, this.currentPlayer) })
         })
+        
+
         updateView(this.currentPlayer)
         renderPlayerMessages('Please place Two Roads and Two Settlements')
     }
@@ -93,7 +98,7 @@ class Game {
                 return true
             }
         })
-        if (!this.firstTurn()){
+        if (!this.firstTurn() || this.currentPlayer.id === 0){
             this.roll()
         }
     }
@@ -132,13 +137,37 @@ class Game {
                 this.currentPlayer.firstTurn = false
                 this.changePlayer()
             }
-            
             return true
         } else {
             this.changePlayer()
-            roll()
+            // this.roll()
             return false
         }
+    }
+
+    demoStart(){
+        debugger
+        this.createSettlement(grid.settlements[19], this.currentPlayer);
+        debugger
+        this.createRoad(grid.roads[26], this.currentPlayer);
+        this.createSettlement(grid.settlements[36], this.currentPlayer);
+        this.createRoad(grid.roads[47], this.currentPlayer);
+        this.endTurn()
+        this.createSettlement(grid.settlements[42], this.currentPlayer);
+        this.createRoad(grid.roads[58], this.currentPlayer);
+        this.createSettlement(grid.settlements[49], this.currentPlayer);
+        this.createRoad(grid.roads[63], this.currentPlayer);
+        this.endTurn()
+        this.createSettlement(grid.settlements[30], this.currentPlayer);
+        this.createRoad(grid.roads[42], this.currentPlayer);
+        this.createSettlement(grid.settlements[28], this.currentPlayer);
+        this.createRoad(grid.roads[40], this.currentPlayer);
+        this.endTurn()
+        this.createSettlement(grid.settlements[8], this.currentPlayer);
+        this.createRoad(grid.roads[11], this.currentPlayer);
+        this.createSettlement(grid.settlements[12], this.currentPlayer);
+        this.createRoad(grid.roads[14], this.currentPlayer);
+        this.endTurn()
     }
 }
 
