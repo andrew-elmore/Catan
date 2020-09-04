@@ -23,6 +23,9 @@ class Game {
         let rollButton = document.getElementById('roll')
         rollButton.addEventListener('click', () => this.endTurn())
 
+        let instructions = document.getElementById('instructions-button')
+        instructions.addEventListener('click', () => this.showInstructions())
+
         let devCardButton = document.getElementById('dev-card')
         devCardButton.addEventListener('click', () => buyDevCard())
 
@@ -169,8 +172,15 @@ class Game {
         this.createRoad(grid.roads[14], this.currentPlayer);
         this.endTurn()
     }
+
+    showInstructions(){
+        document.getElementById("instructions-anchor").style.display = "block";
+    }
 }
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const game = new Game();
 })
+
