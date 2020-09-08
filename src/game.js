@@ -55,7 +55,7 @@ class Game {
             ele.addEventListener('click', () => { createRoad(road, this.currentPlayer) })
         })
         
-        showInstructions()
+        // showInstructions()
         updateView(this.currentPlayer)
         renderPlayerMessages('Please place Two Roads and Two Settlements')
     }
@@ -157,18 +157,9 @@ class Game {
     }
 
     npcMoves(){
+        console.log(players)
         npcMove();
-        npcMove();
-        this.endTurn
-        npcMove();
-        npcMove();
-        this.endTurn
-        npcMove();
-        npcMove();
-        this.endTurn
-        npcMove();
-        npcMove();
-        this.endTurn
+        this.endTurn()
     }
 
 

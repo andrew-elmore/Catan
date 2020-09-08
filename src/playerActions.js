@@ -135,7 +135,7 @@ function updateTradePannel(){
     })
 }
 
-function finishTrade(fromResourceName, toResourceName) {
+export function finishTrade(fromResourceName, toResourceName) {
     
     let player = findPlayer()
 

@@ -18,6 +18,7 @@ export function createSettlement(settlement, player) {
     if (settlement.adj.every(settlement => settlement.type === null)) {
         if (settlement.type === null) {
             if (constructSettlement(player, settlement)) {
+                player.settlements.push(settlement)
                 renderSettlement(settlement, player)
             }
         } else if (settlement.type === 'settlement') {
@@ -31,6 +32,7 @@ export function createSettlement(settlement, player) {
 export function createRoad(road, player) {
     if (road.owner === null) {
         if (constructRoad(player, road)) {
+            player.roads.push(road)
             renderRoad(road, player)
         }
     }
