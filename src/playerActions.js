@@ -1,5 +1,3 @@
-import { renderBoard } from "./board"
-
 const players = require("./playersObject")
 
 

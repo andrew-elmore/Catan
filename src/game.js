@@ -3,18 +3,24 @@ import { renderRoad, renderSettlement, renderCity, renderBoard } from "./board"
 const players = require("./playersObject")
 import { 
     addResources, 
-    constructCity, 
-    constructSettlement, 
-    constructRoad, 
     updateView, 
     renderPlayerMessages, 
     renderTradePannel,
     buyDevCard
 } from "./playerActions"
 
+import {
+    createSettlement,
+    createRoad
+} from "./boardActions.js"
+
 import{
     showInstructions
 } from "./tutorial.js"
+
+import{
+    npcMove
+} from "./npcObject.js"
 
 
 class Game {
@@ -34,16 +40,19 @@ class Game {
         devCardButton.addEventListener('click', () => buyDevCard())
 
         let demoSetupButton = document.getElementById('demo-setup')
-        demoSetupButton.addEventListener('click', () => this.demoStart())
+        demoSetupButton.addEventListener('click', () => this.npcMoves())
+
+        // let demoSetupButton = document.getElementById('demo-setup')
+        // demoSetupButton.addEventListener('click', () => this.demoStart())
 
         Object.values(grid.settlements).forEach(settlement => {
             let ele = document.getElementById(settlement.name)
-            ele.addEventListener('click', () => { this.createSettlement(settlement, this.currentPlayer) })
+            ele.addEventListener('click', () => { createSettlement(settlement, this.currentPlayer) })
         })
         
         Object.values(grid.roads).forEach(road => {
             let ele = document.getElementById(road.name)
-            ele.addEventListener('click', () => { this.createRoad(road, this.currentPlayer) })
+            ele.addEventListener('click', () => { createRoad(road, this.currentPlayer) })
         })
         
         showInstructions()
@@ -51,34 +60,6 @@ class Game {
         renderPlayerMessages('Please place Two Roads and Two Settlements')
     }
 
-
-    createCity(settlement, player) {
-        if (constructCity(player)){
-            renderCity(settlement, player)
-        }
-    }
-    
-    createSettlement(settlement, player) {
-        if (settlement.adj.every(settlement => settlement.type === null)) {
-            if (settlement.type === null) {
-                if (constructSettlement(player, settlement)) {
-                    renderSettlement(settlement, player)
-                }
-            } else if (settlement.type === 'settlement') {
-                this.createCity(settlement, player)
-            } else {
-                renderPlayerMessages('You cannot build a settlement right next to another settlement.')
-            }
-        }
-    }
-    
-    createRoad(road, player) {
-        if (road.owner === null){
-            if (constructRoad(player, road)){
-                renderRoad(road, player)
-            }
-        }
-    }
 
     roll() {
         let res = Math.round(Math.random() * 6) + Math.round(Math.random() * 6)
@@ -153,26 +134,41 @@ class Game {
     }
 
     demoStart(){
-        this.createSettlement(grid.settlements[19], this.currentPlayer);
-        this.createRoad(grid.roads[26], this.currentPlayer);
-        this.createSettlement(grid.settlements[36], this.currentPlayer);
-        this.createRoad(grid.roads[47], this.currentPlayer);
+        createSettlement(grid.settlements[19], this.currentPlayer);
+        createRoad(grid.roads[26], this.currentPlayer);
+        createSettlement(grid.settlements[36], this.currentPlayer);
+        createRoad(grid.roads[47], this.currentPlayer);
         this.endTurn()
-        this.createSettlement(grid.settlements[42], this.currentPlayer);
-        this.createRoad(grid.roads[58], this.currentPlayer);
-        this.createSettlement(grid.settlements[49], this.currentPlayer);
-        this.createRoad(grid.roads[63], this.currentPlayer);
+        createSettlement(grid.settlements[42], this.currentPlayer);
+        createRoad(grid.roads[58], this.currentPlayer);
+        createSettlement(grid.settlements[49], this.currentPlayer);
+        createRoad(grid.roads[63], this.currentPlayer);
         this.endTurn()
-        this.createSettlement(grid.settlements[30], this.currentPlayer);
-        this.createRoad(grid.roads[42], this.currentPlayer);
-        this.createSettlement(grid.settlements[28], this.currentPlayer);
-        this.createRoad(grid.roads[40], this.currentPlayer);
+        createSettlement(grid.settlements[30], this.currentPlayer);
+        createRoad(grid.roads[42], this.currentPlayer);
+        createSettlement(grid.settlements[28], this.currentPlayer);
+        createRoad(grid.roads[40], this.currentPlayer);
         this.endTurn()
-        this.createSettlement(grid.settlements[8], this.currentPlayer);
-        this.createRoad(grid.roads[11], this.currentPlayer);
-        this.createSettlement(grid.settlements[12], this.currentPlayer);
-        this.createRoad(grid.roads[14], this.currentPlayer);
+        createSettlement(grid.settlements[8], this.currentPlayer);
+        createRoad(grid.roads[11], this.currentPlayer);
+        createSettlement(grid.settlements[12], this.currentPlayer);
+        createRoad(grid.roads[14], this.currentPlayer);
         this.endTurn()
+    }
+
+    npcMoves(){
+        npcMove();
+        npcMove();
+        this.endTurn
+        npcMove();
+        npcMove();
+        this.endTurn
+        npcMove();
+        npcMove();
+        this.endTurn
+        npcMove();
+        npcMove();
+        this.endTurn
     }
 
 
