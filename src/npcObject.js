@@ -23,8 +23,10 @@ export function npcMove(){
     if (player.firstTurn === true){
         firstMove(player)
         firstMove(player)
+    } else if (canBuildSettlement(player)) {
+    } else if (canBuildRoad(player)) {
     } else if(canBuyDevCard(player)){
-        
+        buyDevCard()
     }
 }
 
@@ -38,7 +40,7 @@ function firstMove(player){
 }
 
 function firstMoveSelectSettlement(settlements){
-    let res = Math.round(Math.random() * (settlements.length - 2))
+    let res = Math.floor(Math.random() * (settlements.length - 1))
     let settlement = settlements[res]
     while (settlement.owner || settlement.adj.some((adjSett) => adjSett.owner)){
         let res = Math.round(Math.random() * (settlements.length - 2))
@@ -48,7 +50,7 @@ function firstMoveSelectSettlement(settlements){
 }
 
 function firstMoveSelectRoad(roads){
-    let road = roads[Math.round(Math.random() * (roads.length - 1))]
+    let road = roads[Math.floor(Math.random() * (roads.length - 1))]
     if (road.owner){
         firstMoveSelectRoad(roads)
     } else {
@@ -60,7 +62,6 @@ function canBuyDevCard(player){
     let target = { brick: 0, lumber: 0, ore: 1, grain: 1, wool: 1 }
     let resources = Object.keys(target)
     if (resources.every((resource) => {player.resources[resource] > target[resource]}) || canTradeFor(player, target)){
-        buyDevCard()
         return true
     } else {
         return false
@@ -71,15 +72,67 @@ function canBuildSettlement(player){
     let target = { brick: 1, lumber: 1, ore: 0, grain: 1, wool: 1 }
     let resources = Object.keys(target)
     if (resources.every((resource) => { player.resources[resource] > target[resource] }) || canTradeFor(player, target)) {
-        let settlement = findViableSettlement(player)
-        return true
+        let settlements = findViableSettlements(player)
+        if (settlements.length > 0){
+            let res = Math.floor(Math.random() * (settlements.length - 1))
+            let settlement = settlements[res]
+            createSettlement(settlement, player)
+            return true
+        } else {
+            return false
+        }
     } else {
         return false
     }
 }
 
-function findViableSettlement(player){
-    let settlements = Object.values(grid.settlements)
+function findViableSettlements(player){
+    let potentialSettlements = []
+    let currentRoads = Object.values(player.roads)
+    currentRoads.forEach((road) => {
+        Object.values(road.settlements).forEach((settlement) => {
+            let setts = Object.values(settlement.adj)
+            let adjOccupied = setts.every( sett => sett.owner === null )
+            if (settlement.owner === null && adjOccupied)
+            potentialSettlements.push(settlement)
+        })
+    })
+    return potentialSettlements
+}
+
+function canBuildRoad(player){
+    debugger
+    let target = { brick: 1, lumber: 1, ore: 0, grain: 0, wool: 0 }
+    let resources = Object.keys(target)
+    if (resources.every((resource) => { player.resources[resource] > target[resource] }) || canTradeFor(player, target)) {
+        let roads = findViableRoad(player)
+        if (roads.length > 0){
+            let res = Math.floor(Math.random() * (roads.length - 1))
+            let road = roads[res]
+            createRoad(road, player)
+            return true
+        } else {
+            return false
+        }
+    } else {
+        return false
+    }
+}
+
+function findViableRoad(player){
+    let potentialRoads = []
+    let currentRoads = Object.values(player.roads)
+    currentRoads.forEach((road) => {
+        Object.values(road.settlements).forEach((settlement) => {
+            let rds = Object.values(settlement.roads)
+            rds.forEach((rd) =>{
+                if (rd.owner === null){
+                    potentialRoads.push(rd)
+                }
+            })
+        })
+    })
+    return potentialRoads
 }
 
 function canTradeFor(player, target){

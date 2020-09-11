@@ -157,7 +157,12 @@ class Game {
     }
 
     npcMoves(){
-        console.log(players)
+        npcMove();
+        this.endTurn()
+        npcMove();
+        this.endTurn()
+        npcMove();
+        this.endTurn()
         npcMove();
         this.endTurn()
     }
