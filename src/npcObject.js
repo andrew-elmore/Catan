@@ -101,7 +101,6 @@ function findViableSettlements(player){
 }
 
 function canBuildRoad(player){
-    debugger
     let target = { brick: 1, lumber: 1, ore: 0, grain: 0, wool: 0 }
     let resources = Object.keys(target)
     if (resources.every((resource) => { player.resources[resource] > target[resource] }) || canTradeFor(player, target)) {
