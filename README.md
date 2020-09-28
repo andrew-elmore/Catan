@@ -30,3 +30,6 @@ Allow the player to create roads, settlements and cities if they have enough res
 
 ### Day 3: Interface
 Adds event listners to HTML elements above the canvas to allow players to interact by clicking the elements, add on screen counters for resources and victory points, style with CSS.
+
+
+webpack --watch --mode=development

@@ -1,5 +1,3 @@
-import { renderBoard } from "./board"
-
 const players = require("./playersObject")
 
 
@@ -137,7 +135,7 @@ function updateTradePannel(){
     })
 }
 
-function finishTrade(fromResourceName, toResourceName) {
+export function finishTrade(fromResourceName, toResourceName) {
     
     let player = findPlayer()
 
