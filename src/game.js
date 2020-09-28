@@ -83,6 +83,7 @@ class Game {
             if(player.victoryPoints === 10){
                 let ele = document.getElementById("user-pannel")
                 ele.innerHTML = `${player.color} has WON!`
+                showInstructions()
                 return true
             }
         })
@@ -92,12 +93,13 @@ class Game {
     }
 
     changePlayer(){
-        
         if (this.currentPlayer.id < 3){
             let id = this.currentPlayer.id
             this.currentPlayer = players[id + 1]
             players[id].currentPlayer = false
             players[id+1].currentPlayer = true
+            npcMove();
+            this.endTurn()
         } else {
             this.currentPlayer = players[0]
             players[3].currentPlayer = false
@@ -128,44 +130,10 @@ class Game {
             return true
         } else {
             this.changePlayer()
-            // this.roll()
             return false
         }
     }
 
-    demoStart(){
-        createSettlement(grid.settlements[19], this.currentPlayer);
-        createRoad(grid.roads[26], this.currentPlayer);
-        createSettlement(grid.settlements[36], this.currentPlayer);
-        createRoad(grid.roads[47], this.currentPlayer);
-        this.endTurn()
-        createSettlement(grid.settlements[42], this.currentPlayer);
-        createRoad(grid.roads[58], this.currentPlayer);
-        createSettlement(grid.settlements[49], this.currentPlayer);
-        createRoad(grid.roads[63], this.currentPlayer);
-        this.endTurn()
-        createSettlement(grid.settlements[30], this.currentPlayer);
-        createRoad(grid.roads[42], this.currentPlayer);
-        createSettlement(grid.settlements[28], this.currentPlayer);
-        createRoad(grid.roads[40], this.currentPlayer);
-        this.endTurn()
-        createSettlement(grid.settlements[8], this.currentPlayer);
-        createRoad(grid.roads[11], this.currentPlayer);
-        createSettlement(grid.settlements[12], this.currentPlayer);
-        createRoad(grid.roads[14], this.currentPlayer);
-        this.endTurn()
-    }
-
-    npcMoves(){
-        npcMove();
-        this.endTurn()
-        npcMove();
-        this.endTurn()
-        npcMove();
-        this.endTurn()
-        npcMove();
-        this.endTurn()
-    }
 
 
 }
