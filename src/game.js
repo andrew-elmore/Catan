@@ -39,10 +39,6 @@ class Game {
         let devCardButton = document.getElementById('dev-card')
         devCardButton.addEventListener('click', () => buyDevCard())
 
-        let demoSetupButton = document.getElementById('demo-setup')
-        demoSetupButton.addEventListener('click', () => this.npcMoves())
-
-
         Object.values(grid.settlements).forEach(settlement => {
             let ele = document.getElementById(settlement.name)
             ele.addEventListener('click', () => { createSettlement(settlement, this.currentPlayer) })
