@@ -34,7 +34,7 @@ class Game {
         rollButton.addEventListener('click', () => this.endTurn())
 
         let instructions = document.getElementById('instructions-button')
-        instructions.addEventListener('click', () => showInstructions())
+        instructions.addEventListener('click', () => showInstructions(0))
 
         let devCardButton = document.getElementById('dev-card')
         devCardButton.addEventListener('click', () => buyDevCard())
@@ -42,8 +42,6 @@ class Game {
         let demoSetupButton = document.getElementById('demo-setup')
         demoSetupButton.addEventListener('click', () => this.npcMoves())
 
-        // let demoSetupButton = document.getElementById('demo-setup')
-        // demoSetupButton.addEventListener('click', () => this.demoStart())
 
         Object.values(grid.settlements).forEach(settlement => {
             let ele = document.getElementById(settlement.name)
@@ -55,7 +53,7 @@ class Game {
             ele.addEventListener('click', () => { createRoad(road, this.currentPlayer) })
         })
         
-        // showInstructions()
+        showInstructions(1)
         updateView(this.currentPlayer)
         renderPlayerMessages('Please place Two Roads and Two Settlements')
     }
@@ -83,7 +81,7 @@ class Game {
             if(player.victoryPoints === 10){
                 let ele = document.getElementById("user-pannel")
                 ele.innerHTML = `${player.color} has WON!`
-                showInstructions()
+                showInstructions(0)
                 return true
             }
         })
