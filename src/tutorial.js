@@ -1,6 +1,8 @@
-export function showInstructions(pageNum){
+export function showInstructions(pageNum, player){
     document.getElementById("instructions-anchor").style.display = "block";
     let hideInstructionsButton = document.getElementById('hide-instruction-button')
+    hideInstructionsButton.addEventListener('click', () => instructionsButton())
+    
     let pages = [
         () => insPage0(),
         () => insPage1(),
@@ -8,11 +10,11 @@ export function showInstructions(pageNum){
         () => insPage3()
     ]
 
-
-
-    pages[pageNum]()
-
-    hideInstructionsButton.addEventListener('click', () => instructionsButton())
+    if (player === undefined){
+        pages[pageNum]()
+    } else {
+        victoryPage(player)
+    }
 }
 
 function instructionsButton(){
@@ -21,7 +23,8 @@ function instructionsButton(){
         document.getElementById('page0'),
         document.getElementById('page1'),
         document.getElementById('page2'),
-        document.getElementById('page3')
+        document.getElementById('page3'),
+        document.getElementById('victory')
     ]
 
     pageEles.forEach((parent) => {
@@ -44,9 +47,9 @@ function navBar(pageNum, div){
 
     let rightCarat = document.createElement('div')
     rightCarat.innerHTML = '>'
-    leftCarat.id = "rightCarat"
+    rightCarat.id = "rightCarat"
     navDiv.appendChild(rightCarat)
-    rightCarat.addEventListener('click', () => changePage(pageNum + 1))    
+    rightCarat.addEventListener('click', () => changePage( (pageNum + 1) % 4 ))    
 }
 
 function changePage(pageNum){
@@ -75,7 +78,10 @@ function insPage0(){
     
 
     navBar(0, div)
+}
 
+function reload (){
+    window.location.reload()
 }
 
 function insPage1(){
@@ -152,13 +158,66 @@ function insPage2(){
     h1.innerHTML = "Turn & Trading"
     div.appendChild(h1)
 
+    
+    let h2a = document.createElement('h2')
+    h2a.innerHTML = 'First Turn'
+    div.appendChild(h2a)
+    
+    
+    let p1 = document.createElement('p')
+    p1.innerHTML = 'For the first turn place two settlements and two roads, settlements must be two roads appart, and must be placed before their coresponding road can be placed. Once you are done placing the roads and settlements press next turn to move on pass the turn to the computer player. Once you press next turn you will recive a resource for each tile that has a settlement adjacent to it.'
+    div.appendChild(p1)
+
+    
+    let h2b = document.createElement('h2')
+    h2b.innerHTML = 'Typical Turn'
+    div.appendChild(h2b)
+
+    
+    let p2 = document.createElement('p2')
+    p2.innerHTML = 'During your turn you can build settlements, roads, cities, buy development cards and trade. The only limit to how many actions you can take is your resources. At the start of your turn the dice will be rolled and all players will recive the amount of resources they are owed due to that roll. Once you complete your turn, press the end turn button to pass the turn on to the next player.'
+    div.appendChild(p2)
+    
+    
+    let h2c = document.createElement('h2')
+    h2c.innerHTML = 'Trading'
+    div.appendChild(h2c)
+    
+    
+    let p3 = document.createElement('p')
+    p3.innerHTML = 'During your turn you can give up 3 of any type of the same resource in exchange for 1 of any resource.'
+    div.appendChild(p3)
+    
+
     navBar(2, div)
 }
+
+
 
 function insPage3(){
     let pgNum = 3
     console.log("page3")
     let div = document.getElementById('page3')
 
+    
+    let h1 = document.createElement('h1')
+    h1.innerHTML = `About Me`
+    div.appendChild(h1)
+    
+    debugger
     navBar(3, div)
+}
+
+function victoryPage(player){
+    let div = document.getElementById('victory')
+    
+    
+    let h1 = document.createElement('h1')
+    h1.innerHTML = `PLAYER ${player.color.toUpperCase()} HAS WON!`
+    div.appendChild(h1)
+
+    let button = document.createElement('button')
+    button.innerHTML = 'Press Here To Play Again'
+    div.appendChild(button)
+    button.addEventListener('click', () => reload())
 }
