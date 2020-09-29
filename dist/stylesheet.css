@@ -144,7 +144,7 @@ body {
 
 #instructions img{
     z-index: 5;
-    position: absolute;
+    /* position: absolute; */
     height: inherit;
     width: inherit;
 }
@@ -152,13 +152,75 @@ body {
 #instructions-pannel{
     z-index: 6;
     position: absolute;
-    height: 500px;
-    width: 850px;
-    margin-left: 21%;
-    margin-top: 11%;
+    height: 685px;
+    width: 1150px;
+    margin-left: 145px;
+    margin-top: 70px;
+    background-color:  #b0936b;
 }
 
 #hide-instruction-button{
     margin-left: 95%;
     margin-bottom: 10px;
 }
+
+#instructions ul{
+    list-style: none;
+}
+
+#desert::before {
+  content: "\2666";  
+  color: #feffd9; 
+  font-weight: bold; 
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1em; 
+}
+
+#brick::before {
+  content: "\2666";  
+  color: #a85032; 
+  font-weight: bold; 
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1em; 
+}
+
+#wheat::before {
+  content: "\2666";  
+  color: #f2b749; 
+  font-weight: bold; 
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1em; 
+}
+
+#lumber::before {
+  content: "\2666";  
+  color: #044203; 
+  font-weight: bold; 
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1em; 
+}
+
+#wool::before {
+  content: "\2666";  
+  color: #ededed; 
+  font-weight: bold; 
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1em; 
+}
+
+#ore::before {
+  content: "\2666";  
+  color: #696969; 
+  font-weight: bold; 
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1em; 
+}
+
+
+
