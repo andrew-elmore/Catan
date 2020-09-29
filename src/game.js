@@ -52,8 +52,7 @@ class Game {
             let ele = document.getElementById(road.name)
             ele.addEventListener('click', () => { createRoad(road, this.currentPlayer) })
         })
-        
-        showInstructions(1)
+
         updateView(this.currentPlayer)
         renderPlayerMessages('Please place Two Roads and Two Settlements')
     }
@@ -81,7 +80,7 @@ class Game {
             if(player.victoryPoints === 10){
                 let ele = document.getElementById("user-pannel")
                 ele.innerHTML = `${player.color} has WON!`
-                showInstructions(0)
+                showInstructions(0, player)
                 return true
             }
         })
