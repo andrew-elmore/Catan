@@ -33,3 +33,5 @@ Adds event listners to HTML elements above the canvas to allow players to intera
 
 
 webpack --watch --mode=development
+
+about me details

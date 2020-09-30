@@ -86,7 +86,6 @@ function reload (){
 
 function insPage1(){
     let pgNum = 1
-    console.log("page1")
     let div = document.getElementById('page1')
 
     let h1 = document.createElement('h1')
@@ -151,7 +150,6 @@ function insPage1(){
 
 function insPage2(){
     let pgNum = 2
-    console.log("page2")
     let div = document.getElementById('page2')
 
     let h1 = document.createElement('h1')
@@ -196,7 +194,6 @@ function insPage2(){
 
 function insPage3(){
     let pgNum = 3
-    console.log("page3")
     let div = document.getElementById('page3')
 
     
@@ -204,7 +201,6 @@ function insPage3(){
     h1.innerHTML = `About Me`
     div.appendChild(h1)
     
-    debugger
     navBar(3, div)
 }
 
@@ -221,3 +217,6 @@ function victoryPage(player){
     div.appendChild(button)
     button.addEventListener('click', () => reload())
 }
+
+
+	// &#9822;

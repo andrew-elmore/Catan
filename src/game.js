@@ -72,10 +72,11 @@ class Game {
     }
 
     endTurn(){
-        Object.values(players).forEach((player) => {
+        Object.values(players).some((player) => {
             if(player.victoryPoints === 10){
-                let ele = document.getElementById("user-pannel")
-                ele.innerHTML = `${player.color} has WON!`
+                debugger
+                // let ele = document.getElementById("user-pannel")
+                // ele.innerHTML = `${player.color} has WON!`
                 showInstructions(0, player)
                 return true
             }

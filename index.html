@@ -3,7 +3,7 @@
 <head>
     <meta property='og:image' content='https://i.imgur.com/Z8NjpMs.png' >
     <meta property='og:description' content='A turn based 4 player game inspired by the popular board game, built using pure JavaScript, Canvas, HTML5, CSS3.' >
-    
+    <link rel="icon" href="./src/images/favicon.png" />
     
     <title>Catan</title>
     <style type='text/css'>
@@ -25,14 +25,46 @@
     <div id='game'>
         <button id="instructions-button">Instructions</button>
         <div id="top-bar">
-            <div id="player-name"></div>
-            <div id="knights">Knights:</div>
-            <div id="victory-points"></div>
+            Catan Lite
         </div>
         <div id="user-pannel"></div>
         <div class='grid-wrapper'>
+            <div class='left-bar'>
+                <div id="player-name"></div>
+                <div id="victory-points"></div>
+                <div id="knights">Knights:</div>
+            </div>
             <div class='grid'>
                 <canvas height=410px width=510px></canvas>
+            </div>
+            <div class='right-bar'>
+                <div>&#119657 Road: 
+                    <ul>
+                        <li id="brick">Brick: 1</li>
+                        <li id="lumber">Lumber: 1</li>
+                    </ul>
+                </div>
+                <div>&#11044 Settlement: 
+                    <ul>
+                        <li id="brick">Brick: 1</li>
+                        <li id="lumber">Lumber: 1</li>
+                        <li id="wheat">Grain: 1</li>
+                        <li id="wool">Wool: 1</li>
+                    </ul>
+                </div>
+                <div>&#9673 City: 
+                    <ul>
+                        <li id="wheat">Grain: 2</li>
+                        <li id="ore">Ore: 3</li>
+                    </ul>
+                </div>
+                <div>&#10050 Development Card: 
+                    <ul>
+                        <li id="wheat">Grain: 1</li>
+                        <li id="ore">Ore: 1</li>
+                        <li id="wool">Wool: 1</li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div id="trade-pannel"></div>

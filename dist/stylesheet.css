@@ -9,27 +9,25 @@ body {
 }
 
 .grid-wrapper{
-    align-content: center;
+    /* align-content: center; */
     padding: 10px;
+    display: flex;
 }
 
-.grid {
-    position: relative;
-    height: 410px;
-    width: 510px;
-    margin: auto;
-}
+
 
 .grid div {
     position: absolute;
     height: 10px;
     width: 10px;
+    cursor: crosshair;
 }
 
 .grid span {
     position: absolute;
     height: 20px;
     width: 20px;
+    cursor: pointer;
 }
 
 .grid p {
@@ -43,32 +41,32 @@ body {
 
 
 #top-bar{
-    padding: 20px;
-    display: flex;
+    padding: 10px;
+    font-size: 30px;
+    font-style: italic;
+    font-family: Cursive;
+    text-align: center;
 }
 
 #player-name{
     padding-bottom: 10px;
     font-size: 30px;
     font-style: italic;
-        font-family: Cursive;
-    margin-right: auto;
+    font-family: Cursive;
 }
 
 #victory-points{
     padding-bottom: 10px;
     font-size: 30px;
     font-style: italic;
-        font-family: Cursive;
-    margin-left: auto;
+    font-family: Cursive;
 }
 
 #knights{
     padding-bottom: 10px;
     font-size: 30px;
     font-style: italic;
-        font-family: Cursive;
-    margin-left: 122px;
+    font-family: Cursive;
 }
 
 #user-pannel{
@@ -278,4 +276,46 @@ body {
 
 #victory button{
     width: 1150px;
+}
+
+.grid {
+    position: relative;
+    height: 460px;
+    width: 510px;
+    display: inline-block;
+}
+
+.left-bar{
+    display: inline-block;
+    height: 410;
+    width: 420px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: silver;
+}
+
+.left-bar div{
+    padding: 20px;
+}
+.right-bar{
+    display: inline-block;
+    height: 410;
+    width: 420px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: silver;
+    font-family: Cursive;
+    font-style: italic;
+}
+
+.right-bar ul{
+    padding: 0px;
+    padding-left: 130px;
+    margin: 0;
+    list-style-type: none;
+}
+
+.right-bar div{
+    padding-top: 5px;
+    padding-left: 30px;
 }
