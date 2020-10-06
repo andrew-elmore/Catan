@@ -198,9 +198,49 @@ function insPage3(){
 
     
     let h1 = document.createElement('h1')
-    h1.innerHTML = `About Me`
+    h1.innerHTML = `About Me: Andrew Elmore`
     div.appendChild(h1)
     
+    
+    let p1 = document.createElement('p')
+    p1.innerHTML = 'I love the satisfaction of successfully completing a project. I enjoy having an idea or a problem to solve, coming up with a solution and overcoming the challenges that emerge on the road to that solution. That is what I love about software development, every project comes with a unique set of requirements and therefore a unique set of challenges leading to a unique sense of satisfaction when it is completed. My knowledge of React, JavaScript, Redux, HTML, CSS, Ruby on Rails, and the MERN Stack give me the technical ability to find the solution to these challenges.My background as a financial advisor also impressed on me the importance of looking at a project from the users perspective. This ensures that I structure the project in a way that will lead to the best possible experience for that user.'
+    div.appendChild(p1)
+    
+    let email = document.createElement('p')
+    email.innerHTML = 'Email: andrew.elmore93@gmail.com'
+    div.appendChild(email)
+
+
+    let phone = document.createElement('p')
+    phone.innerHTML = 'Phone: 860-287-6464'
+    div.appendChild(phone)
+    
+    let githubRepo = document.createElement('a')
+    githubRepo.innerHTML = 'Github'
+    githubRepo.href = 'https://github.com/andrew-elmore'
+    githubRepo.rel = "noopener noreferrer"
+    githubRepo.target = "_blank"
+    div.appendChild(githubRepo)
+
+    
+    let personalSite = document.createElement('a')
+    personalSite.innerHTML = 'Portfolio Site'
+    personalSite.href = 'https://andrew-elmore.github.io/'
+    personalSite.rel = "noopener noreferrer"
+    personalSite.target = "_blank"
+    div.appendChild(personalSite)
+    
+    
+    
+    let likedinLink = document.createElement('a')
+    likedinLink.innerHTML = 'Linkedin'
+    likedinLink.href = 'https://www.linkedin.com/in/akelmore/'
+    likedinLink.rel = "noopener noreferrer"
+    likedinLink.target = "_blank"
+    div.appendChild(likedinLink)
+
+    
+
     navBar(3, div)
 }
 

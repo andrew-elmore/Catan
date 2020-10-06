@@ -9,7 +9,6 @@ body {
 }
 
 .grid-wrapper{
-    /* align-content: center; */
     padding: 10px;
     display: flex;
 }
@@ -267,6 +266,10 @@ body {
     font-size: 20px;
 }
 
+#instructions a {
+    padding: 10px;
+}
+
 
 #victory h1{
     margin: 30px;
@@ -319,3 +322,4 @@ body {
     padding-top: 5px;
     padding-left: 30px;
 }
+
