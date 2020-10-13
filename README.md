@@ -96,5 +96,81 @@ export function renderSettlement(settlement, player) {
 }
 ```
 
-##Opponents
-Only the red player one is played by the user, the other three players are computer players. 
+## Opponents
+Only the red player one is played by the user, the other three players are computer players. When the current player is not the red player, the npcMove function is called, which forms the basis for the computer player's logic.
+
+```
+changePlayer(){
+        if (this.currentPlayer.id < 3){
+            let id = this.currentPlayer.id
+            this.currentPlayer = players[id + 1]
+            players[id].currentPlayer = false
+            players[id+1].currentPlayer = true
+            npcMove();
+            this.endTurn()
+        } else {
+            this.currentPlayer = players[0]
+            players[3].currentPlayer = false
+            players[0].currentPlayer = true
+        }
+        updateView(this.currentPlayer)
+        if (this.currentPlayer.firstTurn === true){
+            renderPlayerMessages('Please place Two Roads and Two Settlements')
+        }
+
+    }
+```
+```
+export function npcMove(){
+    let player = findPlayer()
+    if (player.firstTurn === true){
+        firstMove(player)
+        firstMove(player)
+    } else if (canBuildSettlement(player)) {
+    } else if (canBuildRoad(player)) {
+    } else if(canBuyDevCard(player)){
+        buyDevCard()
+    }
+}
+```
+The npcMove function attempts to build settlements and roads first, if that is not possible it will buy a development card. Each canBuild/Buy function checks current resources, if the computer player can do the chosen action with the current the current resources it will do so, otherwise it will check to see if it can trade for those resources. 
+
+```
+function canTradeFor(player, target){
+    let resources = Object.keys(target)
+    let tradeTokens = 0
+    let requiredTradeTokens = 0
+    resources.forEach((resource) => {
+        if(target[resource] > player.resources[resource]){
+            requiredTradeTokens += 1
+        }
+        if (player.resources[resource] - target[resource] > 3){
+            tradeTokens += Math.floor((player.resources[resource] - target[resource]) / 3)
+        }
+    })
+
+    if(requiredTradeTokens <= tradeTokens){
+        while (requiredTradeTokens > 0){
+            let fromResourceName = null
+            let toResourceName = null
+            resources.forEach((resource) => {
+                if (target[resource] > player.resources[resource]) {
+                    toResourceName = resource
+                }
+            })
+            resources.forEach((resource) => {
+                if (player.resources[resource] - target[resource] > 3) {
+                    fromResourceName = resource
+                }
+            })
+            finishTrade(fromResourceName, toResourceName)
+            requiredTradeTokens -= 1
+        }
+        return true
+    } else {
+        return false
+    }
+}
+```
+the canTradeFor function tracks the number of trades required to trade for the missing resources and then sees how many trades are possible without loosing any required resource. If the required trades (tracked as requiredTradeTokens) is less than or equal to the number of possible trades (tracked as tradeTokens) the trades will be made and the purchase will be made. 
+
