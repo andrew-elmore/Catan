@@ -88,7 +88,7 @@ body {
     display: flex;
     background-color: silver;
     border-radius: 5px;
-
+    font-family: Arial
 }
 .resource-trade-container {
     text-align: center;
@@ -109,15 +109,19 @@ body {
     padding-left: 10px;
     padding-right: 10px;
 }
-#roll{
+#roll, #dev-card{
     background-color: #b0936b;
-    width: 100%;
+    width: 60%;
+    margin-left: 20%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-#dev-card{
+/* #dev-card{
     background-color: #b0936b;
-    width: 100%;
-}
+    width: 60%;
+    margin-left: 20%;
+} */
 
 #demo-setup{
     background-color: #594a36;
@@ -283,7 +287,7 @@ body {
 
 .grid {
     position: relative;
-    height: 460px;
+    height: 420px;
     width: 510px;
     display: inline-block;
 }
@@ -319,7 +323,7 @@ body {
 }
 
 .right-bar div{
-    padding-top: 5px;
+    padding-top: 0px;
     padding-left: 30px;
 }
 

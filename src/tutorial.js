@@ -69,7 +69,7 @@ function insPage0(){
     div.appendChild(p1)
 
     let p2 = document.createElement('p')
-    p2.innerHTML = 'Each settlement is worth one victory point and each development card has a 50% chance of yeilding a victory point.'
+    p2.innerHTML = 'Each settlement is worth one victory point and each development card has a 50% chance of yielding a victory point.'
     div.appendChild(p2)
 
     let img1 = document.createElement('img')
@@ -94,7 +94,7 @@ function insPage1(){
 
     
     let p1 = document.createElement('p')
-    p1.innerHTML = 'Each tile has a number and a color, the color denotes what type of resource is harvested from the tile by settlements with access to it. The number denotes when that resource will be harvested. At the start of each turn a dice is rolled, the number coresponding to that dice roll indicates which tiles will yeild resources.'
+    p1.innerHTML = 'Each tile has a number and a color, the color denotes what type of resource is harvested from the tile by settlements with access to it. The number denotes when that resource will be harvested. At the start of each turn a dice is rolled, the number coresponding to that dice roll indicates which tiles will yield resources.'
     div.appendChild(p1)
     
     
