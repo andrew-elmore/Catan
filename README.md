@@ -6,9 +6,9 @@ Catan is a multiplayer board game in which a player builds settlements and citie
 ## Construction
 By clicking on an intersion between three tiles a player builds a settlement, and by clicking on an edge between two tiles the player builds a road, this occors in three phases.
 
-![wireframe](/README_images/build.gif)
+![build](/README_images/build.gif)
 
-###Validation
+***Validation***
 Through the createSettlement function the settlement is checked to ensure that no adjacent settlements are owned, and that the current settlement is not owned.
 
 ```
@@ -53,7 +53,7 @@ export function constructSettlement(player, settlement){
 }
 ```
 
-###Creation and View Update
+***Creation and View Update***
 If a settlement is valid, the constructSettlement function deducts the resources needed for construction from the player and pushes the created settlement into the player object's settlements array. The player's view is then updated, reflecting the change in the player's resource count.
 
 ```
@@ -78,7 +78,7 @@ function updateTradePannel(){
 }
 ```
 
-###Render 
+***Render*** 
 Once the settlement is validated, resources are deducted, and the view updated the settlement is drawn on the canvas. Each settlement object has a a set of coordinates as part of the settlement object. These coordinates form the center of a circle which has a fill color of the player's color. 
 
 ```
