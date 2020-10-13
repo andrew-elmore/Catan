@@ -68,7 +68,7 @@ export function constructSettlement(player, settlement){
         updateView()
         return true
     } else {
-        renderPlayerMessages("cannot create road here, there are no roads nearby")
+        renderPlayerMessages("cannot create settlement here, there are no roads nearby")
     }
 }
 
